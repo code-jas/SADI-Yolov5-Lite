@@ -177,6 +177,31 @@ class ConfusionMatrix:
         except Exception as e:
             pass
         
+        
+#! for testing only - instead of decimal in matrix, show count        
+    # def plot(self, save_dir='', names=()):
+    #     try:
+    #         import seaborn as sn
+    #         # array = self.matrix / (self.matrix.sum(0).reshape(1, self.nc + 1) + 1E-6)  # normalize
+    #         # array[array < 0.005] = np.nan  # don't annotate (would appear as 0.00)
+            
+    
+    #         fig = plt.figure(figsize=(12, 9), tight_layout=True)
+    #         sn.set(font_scale=1.0 if self.nc < 50 else 0.8)  # for label size
+    #         labels = (0 < len(names) < 99) and len(names) == self.nc  # apply names to ticklabels
+    #         # sn.heatmap(self.matrix, annot=self.nc < 30, annot_kws={"size": 8}, cmap='Blues',fmt='.1f', square=True,
+    #         #            xticklabels=names + ['background FP'] if labels else "auto",
+    #         #            yticklabels=names + ['background FN'] if labels else "auto").set_facecolor((1, 1, 1))
+            
+    #         sn.heatmap(self.matrix, annot=True, annot_kws={"size": 8, "annotate":lambda x: "{:.1f}%".format(x * 100)}, cmap='Blues',fmt='.1f', square=True,
+    #                    xticklabels=names + ['background FP'] if labels else "auto",
+    #                    yticklabels=names + ['background FN'] if labels else "auto")
+    #         fig.axes[0].set_xlabel('True')
+    #         fig.axes[0].set_ylabel('Predicted')
+    #         fig.savefig(Path(save_dir) / 'confusion_matrix.png', dpi=250)
+    #     except Exception as e:
+    #         pass    
+        
     
 
     def print(self):
