@@ -1,8 +1,8 @@
-# YOLOv5
+# SADI - YOLOv5 
 
 This is a fork of the [ppogg/YOLOv5-Lite](https://github.com/ppogg/YOLOv5-Lite)
 
-## Requirements
+## Windows Requirements
 
 - Python 3.6+
 - NVIDIA CUDA 11.7
@@ -20,7 +20,7 @@ This is a fork of the [ppogg/YOLOv5-Lite](https://github.com/ppogg/YOLOv5-Lite)
       - Example: ``C:\Users\Jas\anaconda3\Library\bin`` 
     - Restart the computer
 
-## Installation
+## Windows Installation
 
 - Clone the repository
 ```git clone https://github.com/code-jas/SADI-Yolov5-Lite.git```
@@ -36,7 +36,7 @@ This is a fork of the [ppogg/YOLOv5-Lite](https://github.com/ppogg/YOLOv5-Lite)
 - Install Pycocotools
     ``conda install -c conda-forge pycocotools``
 
-## Dataset
+## Training Dataset
 
 - Download the dataset from here: 
     `` wget -c "https://drive.google.com/uc?id=1fhhMEXFtTTYmdnDdUSNrv5Uhaf6vFLjq&confirm=t&uuid=9cc8ab3a-1c16-4109-93ba-392c3c17efbd" ``
@@ -63,6 +63,42 @@ The following scripts are available for general usage:
 - Use Image Inference
     ``python detect.py --source <path to image> --weights <path to weights>``
 
+
+## Jetson Nano 2GB Requirements
+
+- Jetson Nano 2GB
+- Atleast 64GB Micro SD Card
+- 5V 4A Power Supply
+- USB Webcam
+   
+
+## Jetson Nano 2GB Setup
+
+- Download OS Here [Qengineering Ubuntu 18.04 with Pytorch and Torch](https://github.com/Qengineering/Jetson-Nano-image)
+  - Username: ``jetson``
+  - Password: ``jetson``
+- Flash the OS to the SD card using [balenaEtcher](https://www.balena.io/etcher/)
+- Insert the SD card to the Jetson Nano 2GB and power it on
+- Resolve Memory Issues
+  - sudo systemctl disable nvzramconfig
+  - sudo fallocate -l 5G /mnt/swapfile
+  - sudo chmod 600 /mnt/swapfile
+  - sudo mkswap /mnt/swapfile
+  - sudo vim /etc/fstab
+    - Add the following line to the end of the file
+      - ``/mnt/swapfile swap swap defaults 0 0``
+- Clone the repository
+  - ``git clone https://github.com/code-jas/SADI-Yolov5-Lite.git``
+- Install the requirements
+  - ``pip3 install -r requirements.txt``
+- Test Inference
+  - ``python3 JetsonNano.py``
+
+## Jetson Nano (Additional Notes) 
+- To change the camera source, edit the following line in the JetsonNano.py file
+  - ``cap = cv2.VideoCapture(0)``
+- To change the model, edit the following line in the JetsonNano.py file
+  - ``Object_detector = OBJ_DETECTION('weights/v5lite-s.pt', Object_classes)``
 
 ## Changes
 
